@@ -20,7 +20,9 @@ Currently implemented features are:
 
 * pagination
 
-* posting, favouriting, reblogging, and replying to statuses
+* posting and deleting statuses
+
+* favouriting, reblogging, and replying to statuses
 
 * spoiler/content warnings
 
@@ -39,8 +41,6 @@ Currently implemented features are:
 * searching accounts and statuses
 
 Features still to be implemented include:
-
-* deleting statuses
 
 * muting/blocking accounts
 

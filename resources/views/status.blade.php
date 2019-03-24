@@ -54,6 +54,13 @@
                 <a href="{{ route('favourite', ['status_id' => $status['id']]) }}">&#9734;</a>
             @endif
             {{ $status['favourites_count'] }}
-        </span>
+	</span>
+
+        <!-- Delete -->
+        @if (Session::has('user') && Session::get('user')->id === $status['account']['id'])
+            <span title="Delete" id="delete">
+                <a href="{{ route('delete', ['status_id' => $status['id']]) }}">&#128473;</a>
+            </span>
+        @endif
     </div>
 </article></li>

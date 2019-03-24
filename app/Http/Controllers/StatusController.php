@@ -204,6 +204,47 @@ class StatusController extends Controller
     }
 
     /**
+     *
+     * Delete a Status.
+     *
+     * @param string $status_id The ID of the Status to be deleted.
+     *
+     * @return Illuminate\Routing\Redirector Redirect to the home timeline page.
+     */
+    public function delete_status(string $status_id)
+    {
+        $user = session('user');
+
+	if (session()->has('delete_status') && session('delete_status') === $status_id)
+	{
+            # The user has confirmed the deletion, so go ahead and delete the Status.
+
+            Mastodon::domain(env('MASTODON_DOMAIN'))
+                ->token($user->token)
+                ->call('DELETE', '/statuses/' . $status_id);
+
+	    return redirect()->route('home');
+	}
+	else
+	{
+            # Render the confirmation page.
+
+            session()->flash('delete_status', $status_id);
+
+            $status = Mastodon::domain(env('MASTODON_DOMAIN'))
+                    ->token(session('user')->token)
+                    ->get('/statuses/' . $status_id);
+
+            $vars = [
+                'status' => $status,
+                'mastodon_domain' => explode('//', env('MASTODON_DOMAIN'))[1]
+            ];
+	}
+
+        return view('delete_status', $vars);
+    }
+
+    /**
      * Show the context of a Status.
      *
      * Show a Status in its thread of ancestors and descendants.

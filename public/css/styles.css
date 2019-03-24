@@ -71,6 +71,10 @@ div.actions span.reblogged a {
     color: green;
 }
 
+span#delete {
+    font-size: smaller;
+}
+
 time, span.event-indicators {
     font-size: smaller;
     margin-left: 1em;
@@ -95,4 +99,8 @@ nav ul {
 nav ul li {
     display: inline;
     margin-top: 0;
+}
+
+p.warning {
+    color: red;
 }

@@ -48,6 +48,10 @@ Route::get('/status/{status_id}/unfavourite', 'StatusController@unfavourite_stat
     ->name('unfavourite')
     ->middleware('authorize');
 
+Route::get('/status/{status_id}/delete', 'StatusController@delete_status')
+    ->name('delete')
+    ->middleware('authorize');
+
 Route::get('/status/{status_id}/thread', 'StatusController@context')
     ->name('thread');
 
