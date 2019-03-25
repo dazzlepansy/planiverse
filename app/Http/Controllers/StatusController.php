@@ -231,9 +231,21 @@ class StatusController extends Controller
 
             session()->flash('delete_status', $status_id);
 
-            $status = Mastodon::domain(env('MASTODON_DOMAIN'))
+            try
+            {
+                $status = Mastodon::domain(env('MASTODON_DOMAIN'))
                     ->token(session('user')->token)
                     ->get('/statuses/' . $status_id);
+            }
+            catch (\GuzzleHttp\Exception\ServerException $ex)
+	    {
+                $vars = [
+                    'mastodon_domain' => explode('//', env('MASTODON_DOMAIN'))[1],
+                    'message' => 'Status not found.'
+                ];
+
+                return view('error', $vars);
+            }
 
             $vars = [
                 'status' => $status,

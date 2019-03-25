@@ -101,6 +101,6 @@ nav ul li {
     margin-top: 0;
 }
 
-p.warning {
+div.warning {
     color: red;
 }

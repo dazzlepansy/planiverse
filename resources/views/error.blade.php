@@ -5,23 +5,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ $mastodon_domain }} | Delete Status</title>
+        <title>{{ $mastodon_domain }} | Error</title>
 
         <link rel="stylesheet" href="{{ url('css/styles.css') }}" />
     </head>
     <body>
-        <h1>{{ $mastodon_domain }} | Delete Status</h1>
+        <h1>{{ $mastodon_domain }} | Error</h1>
 
         @component('navigation')
 	@endcomponent
 
         <div class="warning">
-            <p>Are you sure you want to delete this status? Click the delete link again to confirm.</p>
+            <p>Something went wrong…</p>
+            <p>{{ $message }}</p>
         </div>
-
-        <ul>
-            @component('status', ['status' => $status])
-            @endcomponent
-        </ul>
     </body>
 </html>
